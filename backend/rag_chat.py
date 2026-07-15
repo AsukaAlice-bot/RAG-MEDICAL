@@ -11,6 +11,7 @@ from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 
 from FlagEmbedding import FlagReranker
 
+from query_rewrite import rewrite_query
 from retrieval.bm25_search import BM25Retriever
 from retrieval.hybrid_search import HybridRetriever
 
@@ -122,7 +123,7 @@ def normalize_rerank_score(raw_score):
 
 
 def rag_answer(question):
-    question = question.strip()
+    question = str(question or "").strip()
 
     if not question:
         return {
@@ -131,13 +132,49 @@ def rag_answer(question):
         }
 
     # ======================
-    # 1. Hybrid Search 候选召回
+    # 1. 查询改写
     # ======================
 
-    candidate_docs = retriever.search(
-        question,
-        k=10
-    )
+    rewritten_query = rewrite_query(llm, question)
+
+    search_queries = [question]
+
+    if (
+        rewritten_query
+        and rewritten_query.strip()
+        and rewritten_query.strip() != question
+    ):
+        search_queries.append(rewritten_query.strip())
+
+    if RETRIEVAL_DEBUG:
+        print("\n" + "=" * 60)
+        print(f"原始问题：{question}")
+        print(f"改写查询：{rewritten_query}")
+        print(f"实际检索查询数：{len(search_queries)}")
+
+    # ======================
+    # 2. 原问题 + 改写问题多路召回
+    # ======================
+
+    candidate_docs = []
+    seen_candidates = set()
+
+    for search_query in search_queries:
+        current_docs = retriever.search(
+            search_query,
+            k=10
+        )
+
+        for doc in current_docs:
+            key = (
+                doc.metadata.get("source", ""),
+                doc.metadata.get("page", -1),
+                doc.page_content.strip(),
+            )
+
+            if key not in seen_candidates:
+                seen_candidates.add(key)
+                candidate_docs.append(doc)
 
     if not candidate_docs:
         return {
@@ -146,7 +183,7 @@ def rag_answer(question):
         }
 
     # ======================
-    # 2. 构造 Reranker 输入
+    # 3. 使用原始问题构造 Reranker 输入
     # ======================
 
     pairs = [
@@ -161,7 +198,7 @@ def rag_answer(question):
         }
 
     # ======================
-    # 3. Reranker 打分
+    # 4. Reranker 打分
     # ======================
 
     raw_scores = reranker.compute_score(pairs)
@@ -193,7 +230,7 @@ def rag_answer(question):
         }
 
     # ======================
-    # 4. 控制台调试输出
+    # 5. 控制台调试输出
     # ======================
 
     if RETRIEVAL_DEBUG:
@@ -218,7 +255,7 @@ def rag_answer(question):
             print(doc.page_content[:500])
 
     # ======================
-    # 5. 相关度阈值硬拒答
+    # 6. 相关度阈值硬拒答
     # ======================
 
     highest_relevance = ranked_items[0]["relevance"]
@@ -230,7 +267,7 @@ def rag_answer(question):
         }
 
     # ======================
-    # 6. 选取达到阈值的 Top-N 文档
+    # 7. 选取达到阈值的 Top-N 文档
     # ======================
 
     accepted_items = [

@@ -30,4 +30,6 @@ uvicorn api:app --reload
 
 http://127.0.0.1:8000/docs
 ```
+成功接入 $reranker$ ,根据回答排序
+
 
