@@ -4,6 +4,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_community.vectorstores import FAISS
 
+import pickle
 
 # PDF路径
 pdf_path = "./data/diabetes.pdf"
@@ -49,6 +50,17 @@ db = FAISS.from_documents(
     embeddings
 )
 
+# 保存文本chunks
+
+with open(
+    "./vectorstore/docs.pkl",
+    "wb"
+) as f:
+
+    pickle.dump(
+        chunks,
+        f
+    )
 
 # 5.保存
 
