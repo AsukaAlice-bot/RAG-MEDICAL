@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "api_url": "http://127.0.0.1:8000/ask",
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "errors": 0
+  },
+  "results": [
+    {
+      "id": "medical_001",
+      "category": "神经病变",
+      "question": "糖尿病神经病变应该如何筛查？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "passed": true,
+      "answer": "根据提供的医学资料，糖尿病神经病变的筛查应遵循以下规范：\n\n1. **筛查对象与时机**：  \n   - 所有2型糖尿病（T2DM）患者在**确诊时**即应开始筛查；  \n   - 1型糖尿病（T1DM）患者在**诊断5年后**开始筛查；  \n   - 此后**至少每年筛查1次**。\n\n2. **筛查重点**：  \n   - 主要针对**弥漫性神经病变**中的**远端对称性多发性神经病变（DSPN）**和**自主神经病变（DAN）**；  \n   - 单神经病变及神经根/神经丛病变因少见，**不作常规筛查**。\n\n3. **DSPN的5项筛查内容**（联合应用，两种或以上检查可提高灵敏度和特异度）：  \n   - 踝反射（评估大纤维功能）；  \n   - 振动觉（如128 Hz音叉检查，评估大纤维功能）；  \n   - 压力觉（如10 g尼龙丝试验，评估大纤维功能）；  \n   - 针刺痛觉（评估小纤维功能）；  \n   - 温度觉（评估小纤维功能）。\n\n4. **特殊情况处理**：  \n   - 若临床表现不典型、诊断不明或疑有其他病因，建议转至**神经内科专科就诊**，或进行**神经电生理检查**（如感觉神经动作电位波幅降低、传导速度减慢等）；  \n   - 小纤维神经病变（SFN）可进一步通过**皮肤活检PGP9.5染色**（金标准）、**定量感觉测定**（如足部热/冷觉阈值异常）等方法评估。\n\n以上内容均严格依据所给资料中明确陈述的信息。",
+      "sources": [
+        "diabetes.pdf 第45页（相关度 0.995）",
+        "diabetes.pdf 第46页（相关度 0.952）"
+      ],
+      "latency_seconds": 15.1788,
+      "error": null
+    },
+    {
+      "id": "medical_002",
+      "category": "视网膜病变",
+      "question": "糖尿病患者眼睛可能出现什么问题？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "passed": true,
+      "answer": "根据提供的医学资料，糖尿病患者眼睛可能出现的问题是**糖尿病视网膜病变（DR）**，包括以下具体表现和并发症：\n\n1. **糖尿病视网膜病变（DR）的类型与分期**：\n   - 非增殖型糖尿病视网膜病变（NPDR）：分为轻度、中度、重度；\n   - 增殖型糖尿病视网膜病变（PDR）；\n   - 糖尿病性黄斑水肿（DME），分为：\n     - 非累及黄斑中心凹的DME（即“非中心受累型DME”）；\n     - 中心受累型DME（视网膜增厚或硬性渗出涉及黄斑中心）。\n\n2. **需急诊处理的眼部急症（须当天转至眼科）**：\n   - 突然的视力丧失；\n   - 视网膜剥离；\n   - 视网膜前或玻璃体出血；\n   - 虹膜红变。\n\n3. **其他相关眼部问题（在资料中明确提及）**：\n   - 黄斑水肿（作为DME的核心表现）；\n   - 视网膜微血管病变（资料2指出复方丹参滴丸可减轻该病变）；\n   - 缺血缺氧损伤（资料2指出芪明颗粒可减轻该损伤）。\n\n注：资料未提及其他眼部疾病（如白内障、青光眼等）与糖尿病的直接关联，故不列入回答。",
+      "sources": [
+        "diabetes.pdf 第45页（相关度 0.834）",
+        "diabetes.pdf 第80页（相关度 0.827）",
+        "diabetes.pdf 第44页（相关度 0.765）"
+      ],
+      "latency_seconds": 14.2988,
+      "error": null
+    },
+    {
+      "id": "medical_003",
+      "category": "慢性并发症",
+      "question": "糖尿病慢性并发症包括哪些疾病？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "passed": true,
+      "answer": "根据提供的医学资料，糖尿病慢性并发症包括以下两类：\n\n一、**大血管病变**（以动脉粥样硬化为病理基础）：  \n- 心血管病变（心）  \n- 脑血管病变（脑）  \n- 下肢血管病变  \n\n二、**微血管病变**：  \n- 糖尿病视网膜病变（DR）  \n- 糖尿病肾损害（糖尿病肾病）  \n- 糖尿病神经系统损害（包括中枢神经系统病变和周围神经病变）  \n\n此外，资料明确指出：  \n- 大血管病变主要表现为心、脑及下肢血管病变；  \n- 微血管病变检查项目包括眼底检查（对应DR）、尿微量白蛋白（对应肾损害）、神经电生理及感觉阈值检测（对应神经病变）。  \n\n注：资料未将高血压、高尿酸血症、高凝状态等列为慢性并发症，而是列为合并症或危险因素；老年综合征（如跌倒、痴呆、抑郁等）、骨折、抑郁症、痴呆等属于老年糖尿病的共病或相关问题，但资料中未将其归类为“慢性并发症”。",
+      "sources": [
+        "diabetes.pdf 第70页（相关度 0.982）",
+        "diabetes.pdf 第65页（相关度 0.954）",
+        "diabetes.pdf 第58页（相关度 0.946）"
+      ],
+      "latency_seconds": 14.0433,
+      "error": null
+    },
+    {
+      "id": "medical_004",
+      "category": "低血糖",
+      "question": "低血糖有哪些临床表现？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "passed": true,
+      "answer": "根据提供的医学资料，低血糖的临床表现如下：\n\n- 与血糖水平及血糖下降速度有关：血糖越低、下降越快，症状越明显。  \n- 可分为两类：  \n  1. **交感神经兴奋症状**：如心悸、焦虑、出汗、头晕、手抖、饥饿感等；  \n  2. **中枢神经症状**：如神志改变、认知障碍、抽搐和昏迷。  \n- **老年患者**常表现为精神行为异常或其他非典型症状。  \n- **无症状性低血糖**（又称无感知性低血糖或无意识性低血糖）：部分患者无明显临床症状，多见于老年患者和伴严重糖尿病神经病变的患者。  \n- 屡发低血糖者，可进展为意识丧失、癫痫发作、昏迷或死亡。",
+      "sources": [
+        "diabetes.pdf 第62页（相关度 0.996）",
+        "diabetes.pdf 第64页（相关度 0.911）",
+        "diabetes.pdf 第64页（相关度 0.824）"
+      ],
+      "latency_seconds": 9.424,
+      "error": null
+    },
+    {
+      "id": "medical_005",
+      "category": "糖尿病足",
+      "question": "糖尿病足应该如何筛查？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "passed": true,
+      "answer": "根据提供的医学资料，糖尿病足（DF）的筛查应遵循以下规范：\n\n1. **筛查频率**：  \n   对所有糖尿病患者**每年进行1次全面的足部检查**，以评估溃疡发生的风险等级。\n\n2. **筛查内容**：  \n   - **病史询问**：包括既往心脑血管病变、终末期肾病、小/大截肢史、周围神经病变及周围血管症状等。  \n   - **体格检查**：  \n     - 皮肤视诊：观察有无畸形、胼胝、溃疡、皮肤颜色变化；  \n     - 神经评估：采用10 g尼龙丝试验、针刺觉或振动觉试验、踝反射等；  \n     - 血管评估：检查下肢和足部血管搏动。\n\n3. **风险分级与随访**：  \n   根据病史、保护性感觉丧失（LOPS）、外周动脉疾病（PAD）、足畸形等症状和体征，依据国际糖尿病足工作组2023年指南，将患者分为0~3级DFU风险等级，并据此制定相应随访频率。\n\n注：资料中未提及针对糖尿病足溃疡（DFU）本身的影像学或实验室专项筛查方法，仅强调上述临床评估流程。",
+      "sources": [
+        "diabetes.pdf 第49页（相关度 0.987）",
+        "diabetes.pdf 第49页（相关度 0.986）",
+        "diabetes.pdf 第53页（相关度 0.986）"
+      ],
+      "latency_seconds": 13.5557,
+      "error": null
+    },
+    {
+      "id": "medical_006",
+      "category": "筛查频率",
+      "question": "2型糖尿病患者多久进行一次视网膜病变筛查？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "passed": true,
+      "answer": "根据医学资料：\n\n2型糖尿病（T2DM）患者应在诊断后进行首次眼病筛查；  \n无糖尿病视网膜病变（DR）者，以后至少每1~2年复查1次；  \n有DR者，则应增加检查频率。",
+      "sources": [
+        "diabetes.pdf 第43页（相关度 0.991）",
+        "diabetes.pdf 第44页（相关度 0.973）",
+        "diabetes.pdf 第45页（相关度 0.971）"
+      ],
+      "latency_seconds": 9.2045,
+      "error": null
+    },
+    {
+      "id": "ood_001",
+      "category": "知识库外-地理",
+      "question": "法国的首都是哪里？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "passed": true,
+      "answer": "知识库中未找到与该问题相关的医学资料。",
+      "sources": [],
+      "latency_seconds": 6.4756,
+      "error": null
+    },
+    {
+      "id": "ood_002",
+      "category": "知识库外-编程",
+      "question": "Java中的HashMap是如何实现的？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "passed": true,
+      "answer": "知识库中未找到与该问题相关的医学资料。",
+      "sources": [],
+      "latency_seconds": 9.934,
+      "error": null
+    },
+    {
+      "id": "ood_003",
+      "category": "知识库外-计算机",
+      "question": "Windows系统如何安装显卡驱动？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "passed": true,
+      "answer": "知识库中未找到与该问题相关的医学资料。",
+      "sources": [],
+      "latency_seconds": 11.5289,
+      "error": null
+    },
+    {
+      "id": "ood_004",
+      "category": "知识库外-历史",
+      "question": "唐朝建立于哪一年？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "passed": true,
+      "answer": "知识库中未找到与该问题相关的医学资料。",
+      "sources": [],
+      "latency_seconds": 3.6431,
+      "error": null
+    }
+  ]
+}

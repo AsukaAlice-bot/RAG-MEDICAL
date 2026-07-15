@@ -1,0 +1,62 @@
+[
+  {
+    "id": "medical_001",
+    "question": "糖尿病神经病变应该如何筛查？",
+    "expected_answerable": true,
+    "category": "神经病变"
+  },
+  {
+    "id": "medical_002",
+    "question": "糖尿病患者眼睛可能出现什么问题？",
+    "expected_answerable": true,
+    "category": "视网膜病变"
+  },
+  {
+    "id": "medical_003",
+    "question": "糖尿病慢性并发症包括哪些疾病？",
+    "expected_answerable": true,
+    "category": "慢性并发症"
+  },
+  {
+    "id": "medical_004",
+    "question": "低血糖有哪些临床表现？",
+    "expected_answerable": true,
+    "category": "低血糖"
+  },
+  {
+    "id": "medical_005",
+    "question": "糖尿病足应该如何筛查？",
+    "expected_answerable": true,
+    "category": "糖尿病足"
+  },
+  {
+    "id": "medical_006",
+    "question": "2型糖尿病患者多久进行一次视网膜病变筛查？",
+    "expected_answerable": true,
+    "category": "筛查频率"
+  },
+  {
+    "id": "ood_001",
+    "question": "法国的首都是哪里？",
+    "expected_answerable": false,
+    "category": "知识库外-地理"
+  },
+  {
+    "id": "ood_002",
+    "question": "Java中的HashMap是如何实现的？",
+    "expected_answerable": false,
+    "category": "知识库外-编程"
+  },
+  {
+    "id": "ood_003",
+    "question": "Windows系统如何安装显卡驱动？",
+    "expected_answerable": false,
+    "category": "知识库外-计算机"
+  },
+  {
+    "id": "ood_004",
+    "question": "唐朝建立于哪一年？",
+    "expected_answerable": false,
+    "category": "知识库外-历史"
+  }
+]
