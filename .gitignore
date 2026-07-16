@@ -13,6 +13,7 @@ frontend/node_modules/
 *.log
 *.logbackend/*.bak
 # logs
+models/
 # Node
 *.pyc
 __pycache__/

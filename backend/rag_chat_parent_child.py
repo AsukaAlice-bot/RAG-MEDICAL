@@ -173,12 +173,38 @@ def create_reranker():
 
 def create_llm():
     """
-    使用与现有 rag_chat.py 相同的 Qwen 配置。
+    创建兼容 OpenAI 接口的大模型客户端。
+
+    默认使用 qwen-plus；配置 LLM_* 环境变量后，
+    可切换到本地 vLLM 模型。
     """
-    return ChatOpenAI(
-        model="qwen-plus",
-        temperature=0.2,
-    )
+    model = os.getenv(
+        "LLM_MODEL",
+        "qwen-plus",
+    ).strip()
+
+    base_url = os.getenv(
+        "LLM_BASE_URL",
+        os.getenv("OPENAI_API_BASE", ""),
+    ).strip()
+
+    api_key = os.getenv(
+        "LLM_API_KEY",
+        os.getenv("OPENAI_API_KEY", ""),
+    ).strip()
+
+    kwargs = {
+        "model": model,
+        "temperature": 0.2,
+    }
+
+    if base_url:
+        kwargs["base_url"] = base_url
+
+    if api_key:
+        kwargs["api_key"] = api_key
+
+    return ChatOpenAI(**kwargs)
 
 
 def load_parent_store():
@@ -630,11 +656,16 @@ def rag_answer_parent_child(
 
 要求：
 1. 只能使用资料中明确出现的信息。
-2. 不得编造资料中没有的内容。
+2. 不得编造、推测或扩展资料中没有的内容。
 3. 如果资料不足以回答，应明确说明资料不足。
-4. 回答应结构清晰、简洁准确。
-5. 不要把检索分数写进回答正文。
-6. 本回答仅用于知识查询，不替代医生诊断和治疗。
+4. 先直接回答用户问题，再补充必要说明。
+5. 对同义、重复、上下位重合的项目进行合并，不得重复列举。
+6. 只保留与用户问题直接相关的主要结论，不要罗列无关背景信息。
+7. 不得把“可能相关、风险增加、评估方法”等内容扩展成独立疾病或结论。
+8. 用户询问“包括哪些”时，优先归纳主要类别，每类只说明一次，通常不超过8项。
+9. 不要为了增加数量而拆分同一疾病，也不要重复使用不同名称列出同一内容。
+10. 不要把检索分数写进回答正文。
+11. 本回答仅用于知识查询，不替代医生诊断和治疗。
 
 医学资料：
 {context}
