@@ -73,6 +73,29 @@ RETRIEVAL_DEBUG = os.getenv(
     "true",
 ).lower() == "true"
 
+COMPUTE_DEVICE = os.getenv(
+    "COMPUTE_DEVICE",
+    "cpu",
+).strip()
+
+RERANK_DEVICE = os.getenv(
+    "RERANK_DEVICE",
+    (
+        "cuda:0"
+        if COMPUTE_DEVICE.startswith("cuda")
+        else COMPUTE_DEVICE
+    ),
+).strip()
+
+RERANK_USE_FP16 = os.getenv(
+    "RERANK_USE_FP16",
+    (
+        "true"
+        if COMPUTE_DEVICE.startswith("cuda")
+        else "false"
+    ),
+).lower() == "true"
+
 
 def normalize_rerank_score(raw_score):
     """
@@ -126,7 +149,7 @@ def create_embeddings():
     return HuggingFaceBgeEmbeddings(
         model_name="BAAI/bge-small-zh-v1.5",
         model_kwargs={
-            "device": "cpu",
+            "device": COMPUTE_DEVICE,
         },
         encode_kwargs={
             "normalize_embeddings": True,
@@ -137,11 +160,14 @@ def create_embeddings():
 def create_reranker():
     """
     创建当前项目使用的 BGE Reranker。
-    CPU 环境关闭 fp16。
+
+    CPU 环境默认关闭 FP16；
+    DCU/GPU 环境默认使用 cuda:0，并开启 FP16。
     """
     return FlagReranker(
         "BAAI/bge-reranker-base",
-        use_fp16=False,
+        use_fp16=RERANK_USE_FP16,
+        devices=RERANK_DEVICE,
     )
 
 

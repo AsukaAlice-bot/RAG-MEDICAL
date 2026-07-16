@@ -1,0 +1,45 @@
+Medical-RAG 海光 DCU 部署测试摘要
+
+硬件设备：海光 DCU BW
+显存容量：63.98 GB
+PyTorch：2.5.1
+HIP：6.3.25405
+FAISS：1.8.0
+LangChain：0.2.17
+
+部署架构：
+FastAPI
+→ Qwen 查询改写
+→ 海光 DCU BGE Embedding
+→ CPU FAISS 检索
+→ 海光 DCU BGE Reranker
+→ Parent 文本回溯
+→ Qwen API 答案生成
+
+知识库：
+PDF原始页数：124
+有效页数：114
+Parent数量：347
+Child数量：1430
+
+评估结果：
+测试总数：10
+通过：10
+失败：0
+TP：6
+TN：4
+FP：0
+FN：0
+Accuracy：100%
+Precision：100%
+Recall：100%
+Specificity：100%
+F1：100%
+总耗时：34.957秒
+平均每题：3.479秒
+
+说明：
+以上指标来自10条小规模可回答/拒答测试，
+不代表医学答案内容准确率达到100%。
+当前Qwen通过阿里云百炼API调用，
+Embedding和Reranker运行于海光DCU。

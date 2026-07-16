@@ -1,3 +1,4 @@
+import os
 import pickle
 from pathlib import Path
 
@@ -22,6 +23,15 @@ CHILD_INDEX_DIR = OUTPUT_DIR / "child_index"
 PARENT_DOCS_PATH = OUTPUT_DIR / "parent_docs.pkl"
 
 CHILD_DOCS_PATH = OUTPUT_DIR / "child_docs.pkl"
+
+# ======================
+# 计算设备配置
+# ======================
+
+COMPUTE_DEVICE = os.getenv(
+    "COMPUTE_DEVICE",
+    "cpu",
+).strip()
 
 
 # ======================
@@ -153,7 +163,7 @@ def create_embeddings():
     return HuggingFaceBgeEmbeddings(
         model_name="BAAI/bge-small-zh-v1.5",
         model_kwargs={
-            "device": "cpu"
+            "device": COMPUTE_DEVICE
         },
         encode_kwargs={
             "normalize_embeddings": True

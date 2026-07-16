@@ -1,25 +1,22 @@
-# Python cache
-__pycache__/
-*.pyc
 
-# Python virtual environment
-venv/
-backend/venv/
-
-# Environment
-.env
 backend/.env
-
-# Node
-frontend/node_modules/
-frontend/dist/
-
-# Java
 backend/target/
-
+backend/vectorstore_parent_child_backup_*/
+backend/venv/
+.env
+# Environment
+frontend/dist/
+frontend/node_modules/
 # IDE
 .idea/
-.vscode/
-
-# logs
+# Java
 *.log
+*.logbackend/*.bak
+# logs
+# Node
+*.pyc
+__pycache__/
+# Python cache
+# Python virtual environment
+venv/
+.vscode/
